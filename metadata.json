@@ -1,0 +1,6 @@
+{
+  "name": "LoveProposal - Romantic Proposal & Response Tracker",
+  "description": "An interactive romantic proposal experience with step-by-step questions, evasive No button, photo memory timeline, romantic music player, custom proposal creator, and live answer analytics dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
