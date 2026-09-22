@@ -1,0 +1,74 @@
+[
+  {
+    "id": "emp_001",
+    "empCode": "EMP-1001",
+    "name": "Aarav Sharma (आरव शर्मा)",
+    "email": "aarav.sharma@company.com",
+    "phone": "+91 98765 43210",
+    "department": "Engineering",
+    "role": "Senior Specialist",
+    "joinDate": "2022-01-15",
+    "status": "Active",
+    "location": "Delhi NCR"
+  },
+  {
+    "id": "emp_002",
+    "empCode": "EMP-1002",
+    "name": "Priya Verma (प्रिया वर्मा)",
+    "email": "priya.verma@company.com",
+    "phone": "+91 98765 43211",
+    "department": "Human Resources",
+    "role": "Manager",
+    "joinDate": "2021-06-10",
+    "status": "Active",
+    "location": "Mumbai"
+  },
+  {
+    "id": "emp_003",
+    "empCode": "EMP-1003",
+    "name": "Rohan Gupta (रोहन गुप्ता)",
+    "email": "rohan.gupta@company.com",
+    "phone": "+91 98765 43212",
+    "department": "Sales & Marketing",
+    "role": "Executive",
+    "joinDate": "2023-03-20",
+    "status": "Active",
+    "location": "Bengaluru"
+  },
+  {
+    "id": "emp_004",
+    "empCode": "EMP-1004",
+    "name": "Ananya Patel (अनन्या पटेल)",
+    "email": "ananya.patel@company.com",
+    "phone": "+91 98765 43213",
+    "department": "Finance",
+    "role": "Team Lead",
+    "joinDate": "2020-11-05",
+    "status": "On Leave",
+    "location": "Ahmedabad"
+  },
+  {
+    "id": "emp_005",
+    "empCode": "EMP-1005",
+    "name": "Vikram Singh (विक्रम सिंह)",
+    "email": "vikram.singh@company.com",
+    "phone": "+91 98765 43214",
+    "department": "Operations",
+    "role": "Manager",
+    "joinDate": "2019-08-12",
+    "status": "Active",
+    "location": "Jaipur"
+  },
+  {
+    "id": "emp_006",
+    "empCode": "EMP-1006",
+    "name": "Kavya Joshi (काव्या जोशी)",
+    "email": "kavya.joshi@company.com",
+    "phone": "+91 98765 43215",
+    "department": "Design",
+    "role": "Senior Specialist",
+    "joinDate": "2022-09-01",
+    "status": "Active",
+    "location": "Pune"
+  }
+]

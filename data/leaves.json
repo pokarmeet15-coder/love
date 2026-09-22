@@ -1,0 +1,39 @@
+[
+  {
+    "id": "leave_101",
+    "employeeId": "emp_004",
+    "leaveType": "Sick",
+    "startDate": "2026-09-20",
+    "endDate": "2026-09-24",
+    "durationDays": 5,
+    "reason": "Viral fever and doctor recommended rest (वायरल बुखार)",
+    "status": "Approved",
+    "appliedOn": "2026-09-19",
+    "reviewedBy": "Priya Verma",
+    "reviewedAt": "2026-09-20"
+  },
+  {
+    "id": "leave_102",
+    "employeeId": "emp_001",
+    "leaveType": "Personal",
+    "startDate": "2026-09-27",
+    "endDate": "2026-09-29",
+    "durationDays": 3,
+    "reason": "Family event and personal work (पारिवारिक कार्यक्रम)",
+    "status": "Pending",
+    "appliedOn": "2026-09-22"
+  },
+  {
+    "id": "leave_103",
+    "employeeId": "emp_003",
+    "leaveType": "Casual",
+    "startDate": "2026-09-12",
+    "endDate": "2026-09-13",
+    "durationDays": 2,
+    "reason": "Out of town travel (बाहर जाना)",
+    "status": "Approved",
+    "appliedOn": "2026-09-10",
+    "reviewedBy": "Vikram Singh",
+    "reviewedAt": "2026-09-11"
+  }
+]
