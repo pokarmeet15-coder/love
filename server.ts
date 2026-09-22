@@ -2,260 +2,559 @@ import express from 'express';
 import fs from 'fs';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
-import { Proposal, ProposalResponse } from './src/types';
+import {
+  Employee,
+  AttendanceRecord,
+  LeaveRecord,
+  EmployeeAttendanceStats,
+  DepartmentSummary,
+  SystemOverviewStats,
+  LeaveType
+} from './src/types';
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json({ limit: '15mb' }));
 
-// File storage directory
+// Data Storage directory & files
 const DATA_DIR = path.join(process.cwd(), 'data');
-const PROPOSALS_FILE = path.join(DATA_DIR, 'proposals.json');
-const RESPONSES_FILE = path.join(DATA_DIR, 'responses.json');
+const EMPLOYEES_FILE = path.join(DATA_DIR, 'employees.json');
+const ATTENDANCE_FILE = path.join(DATA_DIR, 'attendance.json');
+const LEAVES_FILE = path.join(DATA_DIR, 'leaves.json');
 
-// Ensure data folder and files exist
 if (!fs.existsSync(DATA_DIR)) {
   fs.mkdirSync(DATA_DIR, { recursive: true });
 }
 
-const DEFAULT_DEMO_PROPOSAL: Proposal = {
-  id: 'default',
-  creatorName: 'Rahul',
-  crushName: 'Simran',
-  creatorPin: '1234',
-  title: 'A Special Secret Message For You... ❤️',
-  subTitle: 'Take a small journey through my heart before you answer!',
-  photos: [
-    {
-      id: 'p1',
-      url: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80',
-      caption: 'The moment I first saw your smile ✨',
-      date: 'Special Day'
-    },
-    {
-      id: 'p2',
-      url: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80',
-      caption: 'Every moment spent with you feels like magic 🌸',
-      date: 'Unforgettable Memories'
-    },
-    {
-      id: 'p3',
-      url: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80',
-      caption: 'Hoping for many more chapters together 💖',
-      date: 'Forever & Always'
-    }
-  ],
-  questions: [
-    {
-      id: 'q1',
-      questionText: 'Kya tum mujhe pasand karti ho? 🙈',
-      subtitle: 'Be completely honest! My heart is beating fast...',
-      options: ['Haan, bahut jyada! ❤️', 'Haan, tum acche ho! 😊'],
-      allowNoOption: true,
-      noButtonLabel: 'Nahi 😜'
-    },
-    {
-      id: 'q2',
-      questionText: 'Kya tum mere saath aur time spend karna pasand karogi? ☕🌸',
-      subtitle: 'Long conversations, sunset walks, and coffee dates...',
-      options: ['Bilkul, always! 💖', 'Haan, I would love that! ✨'],
-      allowNoOption: true,
-      noButtonLabel: 'Sona h mujhe 😴'
-    },
-    {
-      id: 'q3',
-      questionText: 'Kya tum future me mujhe aur achhe se jaana chahogi? 🔮✨',
-      subtitle: 'Through all the happy & silly moments ahead...',
-      options: ['Haan, 100%! 🌟', 'Yes of course! 💕'],
-      allowNoOption: false
-    },
-    {
-      id: 'q4',
-      questionText: 'Kya tum meri girlfriend banna chahogi? 💍❤️',
-      subtitle: 'Will you hold my hand and make my world complete?',
-      options: ['YES! A thousand times YES! 🎉❤️', 'YES! Forever yours! 💖'],
-      allowNoOption: true,
-      noButtonLabel: 'Nahi 🙈'
-    }
-  ],
-  finalLoveLetter: {
-    title: 'You Made Me The Happiest Person Alive! 🎉💖',
-    body: 'Thank you for answering yes! From the very first day, your presence has brought endless warmth, joy, and laughter into my life. I promise to cherish you, make you smile every day, and stand by you through every adventure.',
-    signature: 'With all my love forever, Rahul 💕'
+// Initial Seed Data
+const INITIAL_EMPLOYEES: Employee[] = [
+  {
+    id: 'emp_001',
+    empCode: 'EMP-1001',
+    name: 'Aarav Sharma (आरव शर्मा)',
+    email: 'aarav.sharma@company.com',
+    phone: '+91 98765 43210',
+    department: 'Engineering',
+    role: 'Senior Specialist',
+    joinDate: '2022-01-15',
+    status: 'Active',
+    location: 'Delhi NCR'
   },
-  musicTrack: 'romantic-melody',
-  evasiveDifficulty: 'playful',
-  createdAt: new Date().toISOString()
-};
+  {
+    id: 'emp_002',
+    empCode: 'EMP-1002',
+    name: 'Priya Verma (प्रिया वर्मा)',
+    email: 'priya.verma@company.com',
+    phone: '+91 98765 43211',
+    department: 'Human Resources',
+    role: 'Manager',
+    joinDate: '2021-06-10',
+    status: 'Active',
+    location: 'Mumbai'
+  },
+  {
+    id: 'emp_003',
+    empCode: 'EMP-1003',
+    name: 'Rohan Gupta (रोहन गुप्ता)',
+    email: 'rohan.gupta@company.com',
+    phone: '+91 98765 43212',
+    department: 'Sales & Marketing',
+    role: 'Executive',
+    joinDate: '2023-03-20',
+    status: 'Active',
+    location: 'Bengaluru'
+  },
+  {
+    id: 'emp_004',
+    empCode: 'EMP-1004',
+    name: 'Ananya Patel (अनन्या पटेल)',
+    email: 'ananya.patel@company.com',
+    phone: '+91 98765 43213',
+    department: 'Finance',
+    role: 'Team Lead',
+    joinDate: '2020-11-05',
+    status: 'On Leave',
+    location: 'Ahmedabad'
+  },
+  {
+    id: 'emp_005',
+    empCode: 'EMP-1005',
+    name: 'Vikram Singh (विक्रम सिंह)',
+    email: 'vikram.singh@company.com',
+    phone: '+91 98765 43214',
+    department: 'Operations',
+    role: 'Manager',
+    joinDate: '2019-08-12',
+    status: 'Active',
+    location: 'Jaipur'
+  },
+  {
+    id: 'emp_006',
+    empCode: 'EMP-1006',
+    name: 'Kavya Joshi (काव्या जोशी)',
+    email: 'kavya.joshi@company.com',
+    phone: '+91 98765 43215',
+    department: 'Design',
+    role: 'Senior Specialist',
+    joinDate: '2022-09-01',
+    status: 'Active',
+    location: 'Pune'
+  }
+];
 
-function readProposals(): Record<string, Proposal> {
+function generateSeedAttendance(employees: Employee[]): AttendanceRecord[] {
+  const records: AttendanceRecord[] = [];
+  const today = new Date();
+
+  // Generate last 30 days attendance
+  for (let i = 0; i < 30; i++) {
+    const dateObj = new Date(today);
+    dateObj.setDate(today.getDate() - i);
+
+    // Skip weekends (0 = Sunday, 6 = Saturday)
+    const dayOfWeek = dateObj.getDay();
+    if (dayOfWeek === 0 || dayOfWeek === 6) continue;
+
+    const dateStr = dateObj.toISOString().split('T')[0];
+
+    employees.forEach((emp, index) => {
+      // Create realistic attendance pattern
+      let status: AttendanceRecord['status'] = 'Present';
+      let hours = 8;
+      let checkIn = '09:30 AM';
+      let checkOut = '05:30 PM';
+
+      // Slight variation based on employee index and day
+      if ((i + index) % 11 === 0) {
+        status = 'On Leave';
+        hours = 0;
+        checkIn = '-';
+        checkOut = '-';
+      } else if ((i + index) % 17 === 0) {
+        status = 'Half-Day';
+        hours = 4;
+        checkIn = '09:30 AM';
+        checkOut = '01:30 PM';
+      } else if ((i + index) % 23 === 0) {
+        status = 'Absent';
+        hours = 0;
+        checkIn = '-';
+        checkOut = '-';
+      }
+
+      records.push({
+        id: `att_${emp.id}_${dateStr}`,
+        employeeId: emp.id,
+        date: dateStr,
+        status,
+        checkIn,
+        checkOut,
+        workingHours: hours,
+        notes: status === 'Half-Day' ? 'Personal work in second half' : undefined
+      });
+    });
+  }
+
+  return records;
+}
+
+const INITIAL_LEAVES: LeaveRecord[] = [
+  {
+    id: 'leave_101',
+    employeeId: 'emp_004',
+    leaveType: 'Sick',
+    startDate: new Date(Date.now() - 2 * 86400000).toISOString().split('T')[0],
+    endDate: new Date(Date.now() + 2 * 86400000).toISOString().split('T')[0],
+    durationDays: 5,
+    reason: 'Viral fever and doctor recommended rest (वायरल बुखार)',
+    status: 'Approved',
+    appliedOn: new Date(Date.now() - 3 * 86400000).toISOString().split('T')[0],
+    reviewedBy: 'Priya Verma',
+    reviewedAt: new Date(Date.now() - 2 * 86400000).toISOString().split('T')[0]
+  },
+  {
+    id: 'leave_102',
+    employeeId: 'emp_001',
+    leaveType: 'Personal',
+    startDate: new Date(Date.now() + 5 * 86400000).toISOString().split('T')[0],
+    endDate: new Date(Date.now() + 7 * 86400000).toISOString().split('T')[0],
+    durationDays: 3,
+    reason: 'Family event and personal work (पारिवारिक कार्यक्रम)',
+    status: 'Pending',
+    appliedOn: new Date().toISOString().split('T')[0]
+  },
+  {
+    id: 'leave_103',
+    employeeId: 'emp_003',
+    leaveType: 'Casual',
+    startDate: new Date(Date.now() - 10 * 86400000).toISOString().split('T')[0],
+    endDate: new Date(Date.now() - 9 * 86400000).toISOString().split('T')[0],
+    durationDays: 2,
+    reason: 'Out of town travel (बाहर जाना)',
+    status: 'Approved',
+    appliedOn: new Date(Date.now() - 12 * 86400000).toISOString().split('T')[0],
+    reviewedBy: 'Vikram Singh',
+    reviewedAt: new Date(Date.now() - 11 * 86400000).toISOString().split('T')[0]
+  }
+];
+
+// File I/O Helpers
+function readEmployees(): Employee[] {
   try {
-    if (!fs.existsSync(PROPOSALS_FILE)) {
-      const initial = { default: DEFAULT_DEMO_PROPOSAL };
-      fs.writeFileSync(PROPOSALS_FILE, JSON.stringify(initial, null, 2));
-      return initial;
+    if (!fs.existsSync(EMPLOYEES_FILE)) {
+      fs.writeFileSync(EMPLOYEES_FILE, JSON.stringify(INITIAL_EMPLOYEES, null, 2));
+      return INITIAL_EMPLOYEES;
     }
-    const data = fs.readFileSync(PROPOSALS_FILE, 'utf-8');
-    const parsed = JSON.parse(data);
-    if (!parsed['default']) {
-      parsed['default'] = DEFAULT_DEMO_PROPOSAL;
-    }
-    return parsed;
+    return JSON.parse(fs.readFileSync(EMPLOYEES_FILE, 'utf-8'));
   } catch (err) {
-    console.error('Error reading proposals file:', err);
-    return { default: DEFAULT_DEMO_PROPOSAL };
+    console.error('Error reading employees:', err);
+    return INITIAL_EMPLOYEES;
   }
 }
 
-function writeProposals(proposals: Record<string, Proposal>) {
-  try {
-    fs.writeFileSync(PROPOSALS_FILE, JSON.stringify(proposals, null, 2));
-  } catch (err) {
-    console.error('Error writing proposals file:', err);
-  }
+function writeEmployees(employees: Employee[]) {
+  fs.writeFileSync(EMPLOYEES_FILE, JSON.stringify(employees, null, 2));
 }
 
-function readResponses(): ProposalResponse[] {
+function readAttendance(): AttendanceRecord[] {
   try {
-    if (!fs.existsSync(RESPONSES_FILE)) {
-      fs.writeFileSync(RESPONSES_FILE, JSON.stringify([], null, 2));
-      return [];
+    if (!fs.existsSync(ATTENDANCE_FILE)) {
+      const emps = readEmployees();
+      const seed = generateSeedAttendance(emps);
+      fs.writeFileSync(ATTENDANCE_FILE, JSON.stringify(seed, null, 2));
+      return seed;
     }
-    const data = fs.readFileSync(RESPONSES_FILE, 'utf-8');
-    return JSON.parse(data);
+    return JSON.parse(fs.readFileSync(ATTENDANCE_FILE, 'utf-8'));
   } catch (err) {
-    console.error('Error reading responses file:', err);
+    console.error('Error reading attendance:', err);
     return [];
   }
 }
 
-function writeResponses(responses: ProposalResponse[]) {
+function writeAttendance(records: AttendanceRecord[]) {
+  fs.writeFileSync(ATTENDANCE_FILE, JSON.stringify(records, null, 2));
+}
+
+function readLeaves(): LeaveRecord[] {
   try {
-    fs.writeFileSync(RESPONSES_FILE, JSON.stringify(responses, null, 2));
+    if (!fs.existsSync(LEAVES_FILE)) {
+      fs.writeFileSync(LEAVES_FILE, JSON.stringify(INITIAL_LEAVES, null, 2));
+      return INITIAL_LEAVES;
+    }
+    return JSON.parse(fs.readFileSync(LEAVES_FILE, 'utf-8'));
   } catch (err) {
-    console.error('Error writing responses file:', err);
+    console.error('Error reading leaves:', err);
+    return INITIAL_LEAVES;
   }
 }
 
-// API Routes
-app.get('/api/health', (_req, res) => {
-  res.json({ status: 'ok', time: new Date().toISOString() });
+function writeLeaves(leaves: LeaveRecord[]) {
+  fs.writeFileSync(LEAVES_FILE, JSON.stringify(leaves, null, 2));
+}
+
+// REST API ROUTES
+
+// GET /api/employees
+app.get('/api/employees', (_req, res) => {
+  const employees = readEmployees();
+  res.json(employees);
 });
 
-// GET all proposal summaries (for creator list)
-app.get('/api/proposals', (_req, res) => {
-  const proposals = readProposals();
-  const list = Object.values(proposals).map(p => ({
-    id: p.id,
-    creatorName: p.creatorName,
-    crushName: p.crushName,
-    title: p.title,
-    createdAt: p.createdAt
-  }));
-  res.json(list);
-});
+// POST /api/employees (Create)
+app.post('/api/employees', (req, res) => {
+  const body = req.body;
+  const employees = readEmployees();
 
-// GET single proposal (strips creator pin for safety)
-app.get('/api/proposal/:id', (req, res) => {
-  const { id } = req.params;
-  const proposals = readProposals();
-  const proposal = proposals[id] || proposals['default'];
-  
-  if (!proposal) {
-    res.status(404).json({ error: 'Proposal not found' });
-    return;
-  }
+  const newId = `emp_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
+  const empCode = body.empCode || `EMP-${1000 + employees.length + 1}`;
 
-  // Hide pin
-  const { creatorPin, ...publicProposal } = proposal;
-  res.json(publicProposal);
-});
-
-// POST create or update proposal
-app.post('/api/proposal', (req, res) => {
-  const body = req.body as Partial<Proposal>;
-  const proposals = readProposals();
-  
-  const id = body.id || `prop_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
-  const existing = proposals[id];
-
-  const updatedProposal: Proposal = {
-    id,
-    creatorName: body.creatorName || existing?.creatorName || 'Anonymous Lover',
-    crushName: body.crushName || existing?.crushName || 'My Crush',
-    creatorPin: body.creatorPin || existing?.creatorPin || '1234',
-    title: body.title || existing?.title || 'A Special Message For You ❤️',
-    subTitle: body.subTitle || existing?.subTitle || 'Answer these small questions!',
-    photos: body.photos && body.photos.length > 0 ? body.photos : (existing?.photos || DEFAULT_DEMO_PROPOSAL.photos),
-    questions: body.questions && body.questions.length > 0 ? body.questions : (existing?.questions || DEFAULT_DEMO_PROPOSAL.questions),
-    finalLoveLetter: body.finalLoveLetter || existing?.finalLoveLetter || DEFAULT_DEMO_PROPOSAL.finalLoveLetter,
-    musicTrack: body.musicTrack || existing?.musicTrack || 'romantic-melody',
-    evasiveDifficulty: body.evasiveDifficulty || existing?.evasiveDifficulty || 'playful',
-    createdAt: existing?.createdAt || new Date().toISOString()
+  const newEmployee: Employee = {
+    id: newId,
+    empCode,
+    name: body.name || 'New Employee',
+    email: body.email || '',
+    phone: body.phone || '',
+    department: body.department || 'Engineering',
+    role: body.role || 'Executive',
+    joinDate: body.joinDate || new Date().toISOString().split('T')[0],
+    status: body.status || 'Active',
+    location: body.location || 'Headquarters'
   };
 
-  proposals[id] = updatedProposal;
-  writeProposals(proposals);
+  employees.push(newEmployee);
+  writeEmployees(employees);
 
-  res.json({
-    success: true,
-    proposalId: id,
-    creatorPin: updatedProposal.creatorPin
-  });
+  res.status(201).json({ success: true, employee: newEmployee });
 });
 
-// POST submit response
-app.post('/api/proposal/:id/respond', (req, res) => {
+// PUT /api/employees/:id (Update)
+app.put('/api/employees/:id', (req, res) => {
   const { id } = req.params;
-  const { crushName, answers, saidYes, loveNote } = req.body;
+  const body = req.body;
+  let employees = readEmployees();
 
-  const responses = readResponses();
-  const newResponse: ProposalResponse = {
-    id: `resp_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
-    proposalId: id,
-    crushName: crushName || 'Your Crush',
-    submittedAt: new Date().toISOString(),
-    answers: answers || [],
-    saidYes: Boolean(saidYes),
-    loveNote: loveNote || ''
+  const index = employees.findIndex(e => e.id === id);
+  if (index === -1) {
+    res.status(404).json({ error: 'Employee not found' });
+    return;
+  }
+
+  employees[index] = {
+    ...employees[index],
+    ...body,
+    id // preserve original ID
   };
 
-  responses.push(newResponse);
-  writeResponses(responses);
-
-  res.json({
-    success: true,
-    message: 'Response submitted successfully! The creator can now view your answers.',
-    responseId: newResponse.id
-  });
+  writeEmployees(employees);
+  res.json({ success: true, employee: employees[index] });
 });
 
-// GET responses for a proposal (Requires Pin check via query or header)
-app.get('/api/proposal/:id/responses', (req, res) => {
+// DELETE /api/employees/:id
+app.delete('/api/employees/:id', (req, res) => {
   const { id } = req.params;
-  const pin = (req.query.pin as string) || (req.headers['x-creator-pin'] as string);
+  let employees = readEmployees();
+  
+  const initialLen = employees.length;
+  employees = employees.filter(e => e.id !== id);
 
-  const proposals = readProposals();
-  const proposal = proposals[id];
-
-  if (!proposal) {
-    res.status(404).json({ error: 'Proposal not found' });
+  if (employees.length === initialLen) {
+    res.status(404).json({ error: 'Employee not found' });
     return;
   }
 
-  if (proposal.creatorPin && proposal.creatorPin !== pin) {
-    res.status(401).json({ error: 'Invalid PIN. Please enter the correct creator PIN.' });
+  writeEmployees(employees);
+
+  // Clean up associated attendance & leave records optionally or retain for history
+  res.json({ success: true, message: 'Employee deleted successfully' });
+});
+
+// GET /api/attendance
+app.get('/api/attendance', (req, res) => {
+  const { date, employeeId } = req.query;
+  let records = readAttendance();
+
+  if (date) {
+    records = records.filter(r => r.date === date);
+  }
+  if (employeeId) {
+    records = records.filter(r => r.employeeId === employeeId);
+  }
+
+  res.json(records);
+});
+
+// POST /api/attendance (Bulk update or record daily attendance)
+app.post('/api/attendance', (req, res) => {
+  const { records } = req.body; // array of AttendanceRecord
+  if (!Array.isArray(records)) {
+    res.status(400).json({ error: 'Invalid payload, expected array of records' });
     return;
   }
 
-  const responses = readResponses().filter(r => r.proposalId === id);
+  const existing = readAttendance();
+  const map = new Map<string, AttendanceRecord>();
+
+  // Map existing records by unique key (employeeId + date)
+  existing.forEach(r => map.set(`${r.employeeId}_${r.date}`, r));
+
+  // Merge/override new records
+  records.forEach((r: AttendanceRecord) => {
+    const key = `${r.employeeId}_${r.date}`;
+    const id = r.id || `att_${r.employeeId}_${r.date}`;
+    map.set(key, { ...r, id });
+  });
+
+  const updatedList = Array.from(map.values());
+  writeAttendance(updatedList);
+
+  res.json({ success: true, updatedCount: records.length });
+});
+
+// GET /api/leaves
+app.get('/api/leaves', (req, res) => {
+  const { employeeId, status } = req.query;
+  let leaves = readLeaves();
+
+  if (employeeId) {
+    leaves = leaves.filter(l => l.employeeId === employeeId);
+  }
+  if (status) {
+    leaves = leaves.filter(l => l.status === status);
+  }
+
+  res.json(leaves);
+});
+
+// POST /api/leaves (Apply leave)
+app.post('/api/leaves', (req, res) => {
+  const body = req.body;
+  const leaves = readLeaves();
+
+  const newLeave: LeaveRecord = {
+    id: `leave_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+    employeeId: body.employeeId,
+    leaveType: body.leaveType || 'Personal',
+    startDate: body.startDate,
+    endDate: body.endDate,
+    durationDays: Number(body.durationDays) || 1,
+    reason: body.reason || '',
+    status: 'Pending',
+    appliedOn: new Date().toISOString().split('T')[0]
+  };
+
+  leaves.unshift(newLeave);
+  writeLeaves(leaves);
+
+  res.status(201).json({ success: true, leave: newLeave });
+});
+
+// PUT /api/leaves/:id (Approve/Reject)
+app.put('/api/leaves/:id', (req, res) => {
+  const { id } = req.params;
+  const { status, reviewedBy } = req.body;
+  let leaves = readLeaves();
+
+  const index = leaves.findIndex(l => l.id === id);
+  if (index === -1) {
+    res.status(404).json({ error: 'Leave request not found' });
+    return;
+  }
+
+  leaves[index].status = status || leaves[index].status;
+  leaves[index].reviewedBy = reviewedBy || 'Admin Manager';
+  leaves[index].reviewedAt = new Date().toISOString().split('T')[0];
+
+  writeLeaves(leaves);
+
+  // Optionally update employee status if leave is currently active
+  if (status === 'Approved') {
+    const employees = readEmployees();
+    const empIndex = employees.findIndex(e => e.id === leaves[index].employeeId);
+    if (empIndex !== -1) {
+      employees[empIndex].status = 'On Leave';
+      writeEmployees(employees);
+    }
+  }
+
+  res.json({ success: true, leave: leaves[index] });
+});
+
+// DELETE /api/leaves/:id
+app.delete('/api/leaves/:id', (req, res) => {
+  const { id } = req.params;
+  let leaves = readLeaves();
+  leaves = leaves.filter(l => l.id !== id);
+  writeLeaves(leaves);
+  res.json({ success: true });
+});
+
+// GET /api/reports/analytics (Detailed reports and metrics)
+app.get('/api/reports/analytics', (_req, res) => {
+  const employees = readEmployees();
+  const attendance = readAttendance();
+  const leaves = readLeaves();
+
+  const todayStr = new Date().toISOString().split('T')[0];
+
+  // System Overview Stats
+  const totalEmployees = employees.length;
+  const activeEmployees = employees.filter(e => e.status === 'Active').length;
+
+  const todayAttendance = attendance.filter(a => a.date === todayStr);
+  const presentToday = todayAttendance.filter(a => a.status === 'Present' || a.status === 'Half-Day').length;
+  const onLeaveToday = todayAttendance.filter(a => a.status === 'On Leave').length;
+
+  const pendingLeaveRequests = leaves.filter(l => l.status === 'Pending').length;
+
+  const deptsSet = new Set(employees.map(e => e.department));
+  const departmentsCount = deptsSet.size;
+
+  // Employee-wise Stats
+  const employeeStats: EmployeeAttendanceStats[] = employees.map(emp => {
+    const empAttendance = attendance.filter(a => a.employeeId === emp.id);
+    const totalWorkingDays = empAttendance.length || 1;
+    const presentDays = empAttendance.filter(a => a.status === 'Present').length;
+    const absentDays = empAttendance.filter(a => a.status === 'Absent').length;
+    const halfDays = empAttendance.filter(a => a.status === 'Half-Day').length;
+    const leaveDays = empAttendance.filter(a => a.status === 'On Leave').length;
+
+    // Calculate Attendance Percentage: (Present + 0.5 * HalfDay) / TotalWorkingDays
+    const effectivePresent = presentDays + halfDays * 0.5;
+    const attendancePercentage = Math.round((effectivePresent / totalWorkingDays) * 100);
+
+    const empLeaves = leaves.filter(l => l.employeeId === emp.id && l.status === 'Approved');
+    const leavesByType: Record<LeaveType, number> = {
+      'Sick': 0,
+      'Personal': 0,
+      'Casual': 0,
+      'Maternity/Paternity': 0,
+      'Unpaid': 0
+    };
+
+    empLeaves.forEach(l => {
+      if (leavesByType[l.leaveType] !== undefined) {
+        leavesByType[l.leaveType] += l.durationDays;
+      }
+    });
+
+    return {
+      employeeId: emp.id,
+      employeeName: emp.name,
+      empCode: emp.empCode,
+      department: emp.department,
+      totalWorkingDays,
+      presentDays,
+      absentDays,
+      halfDays,
+      leaveDays,
+      attendancePercentage: isNaN(attendancePercentage) ? 100 : attendancePercentage,
+      leavesByType
+    };
+  });
+
+  // Calculate Overall Average Attendance %
+  const totalAttendanceSum = employeeStats.reduce((acc, curr) => acc + curr.attendancePercentage, 0);
+  const averageAttendancePercentage = employeeStats.length > 0
+    ? Math.round(totalAttendanceSum / employeeStats.length)
+    : 100;
+
+  // Department Summaries
+  const departmentSummaries: DepartmentSummary[] = Array.from(deptsSet).map(dept => {
+    const deptEmployees = employees.filter(e => e.department === dept);
+    const deptEmpIds = new Set(deptEmployees.map(e => e.id));
+
+    const deptStats = employeeStats.filter(s => deptEmpIds.has(s.employeeId));
+    const deptAttendanceSum = deptStats.reduce((acc, curr) => acc + curr.attendancePercentage, 0);
+    const avgPct = deptStats.length > 0 ? Math.round(deptAttendanceSum / deptStats.length) : 100;
+
+    const deptTodayAtt = todayAttendance.filter(a => deptEmpIds.has(a.employeeId));
+    const presentTodayDept = deptTodayAtt.filter(a => a.status === 'Present' || a.status === 'Half-Day').length;
+    const onLeaveTodayDept = deptTodayAtt.filter(a => a.status === 'On Leave').length;
+
+    return {
+      departmentName: dept,
+      totalEmployees: deptEmployees.length,
+      averageAttendancePercentage: avgPct,
+      presentToday: presentTodayDept,
+      onLeaveToday: onLeaveTodayDept
+    };
+  });
+
+  const overviewStats: SystemOverviewStats = {
+    totalEmployees,
+    activeEmployees,
+    presentToday,
+    onLeaveToday,
+    averageAttendancePercentage,
+    pendingLeaveRequests,
+    departmentsCount
+  };
+
   res.json({
-    proposalId: id,
-    proposalTitle: proposal.title,
-    crushName: proposal.crushName,
-    creatorName: proposal.creatorName,
-    responses
+    overviewStats,
+    employeeStats,
+    departmentSummaries
   });
 });
 
@@ -275,7 +574,7 @@ async function startServer() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`💖 LoveProposal Server running on http://localhost:${PORT}`);
+    console.log(`🚀 Employee & User Management Server running on http://localhost:${PORT}`);
   });
 }
 

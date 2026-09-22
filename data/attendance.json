@@ -1,0 +1,1195 @@
+[
+  {
+    "id": "att_emp_001_2026-09-22",
+    "employeeId": "emp_001",
+    "date": "2026-09-22",
+    "status": "On Leave",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_002_2026-09-22",
+    "employeeId": "emp_002",
+    "date": "2026-09-22",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-09-22",
+    "employeeId": "emp_003",
+    "date": "2026-09-22",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-09-22",
+    "employeeId": "emp_004",
+    "date": "2026-09-22",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-09-22",
+    "employeeId": "emp_005",
+    "date": "2026-09-22",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-09-22",
+    "employeeId": "emp_006",
+    "date": "2026-09-22",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-09-21",
+    "employeeId": "emp_001",
+    "date": "2026-09-21",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-09-21",
+    "employeeId": "emp_002",
+    "date": "2026-09-21",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-09-21",
+    "employeeId": "emp_003",
+    "date": "2026-09-21",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-09-21",
+    "employeeId": "emp_004",
+    "date": "2026-09-21",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-09-21",
+    "employeeId": "emp_005",
+    "date": "2026-09-21",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-09-21",
+    "employeeId": "emp_006",
+    "date": "2026-09-21",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-09-18",
+    "employeeId": "emp_001",
+    "date": "2026-09-18",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-09-18",
+    "employeeId": "emp_002",
+    "date": "2026-09-18",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-09-18",
+    "employeeId": "emp_003",
+    "date": "2026-09-18",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-09-18",
+    "employeeId": "emp_004",
+    "date": "2026-09-18",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-09-18",
+    "employeeId": "emp_005",
+    "date": "2026-09-18",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-09-18",
+    "employeeId": "emp_006",
+    "date": "2026-09-18",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-09-17",
+    "employeeId": "emp_001",
+    "date": "2026-09-17",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-09-17",
+    "employeeId": "emp_002",
+    "date": "2026-09-17",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-09-17",
+    "employeeId": "emp_003",
+    "date": "2026-09-17",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-09-17",
+    "employeeId": "emp_004",
+    "date": "2026-09-17",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-09-17",
+    "employeeId": "emp_005",
+    "date": "2026-09-17",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-09-17",
+    "employeeId": "emp_006",
+    "date": "2026-09-17",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-09-16",
+    "employeeId": "emp_001",
+    "date": "2026-09-16",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-09-16",
+    "employeeId": "emp_002",
+    "date": "2026-09-16",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-09-16",
+    "employeeId": "emp_003",
+    "date": "2026-09-16",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-09-16",
+    "employeeId": "emp_004",
+    "date": "2026-09-16",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-09-16",
+    "employeeId": "emp_005",
+    "date": "2026-09-16",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-09-16",
+    "employeeId": "emp_006",
+    "date": "2026-09-16",
+    "status": "On Leave",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_001_2026-09-15",
+    "employeeId": "emp_001",
+    "date": "2026-09-15",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-09-15",
+    "employeeId": "emp_002",
+    "date": "2026-09-15",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-09-15",
+    "employeeId": "emp_003",
+    "date": "2026-09-15",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-09-15",
+    "employeeId": "emp_004",
+    "date": "2026-09-15",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-09-15",
+    "employeeId": "emp_005",
+    "date": "2026-09-15",
+    "status": "On Leave",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_006_2026-09-15",
+    "employeeId": "emp_006",
+    "date": "2026-09-15",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-09-14",
+    "employeeId": "emp_001",
+    "date": "2026-09-14",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-09-14",
+    "employeeId": "emp_002",
+    "date": "2026-09-14",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-09-14",
+    "employeeId": "emp_003",
+    "date": "2026-09-14",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-09-14",
+    "employeeId": "emp_004",
+    "date": "2026-09-14",
+    "status": "On Leave",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_005_2026-09-14",
+    "employeeId": "emp_005",
+    "date": "2026-09-14",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-09-14",
+    "employeeId": "emp_006",
+    "date": "2026-09-14",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-09-11",
+    "employeeId": "emp_001",
+    "date": "2026-09-11",
+    "status": "On Leave",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_002_2026-09-11",
+    "employeeId": "emp_002",
+    "date": "2026-09-11",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-09-11",
+    "employeeId": "emp_003",
+    "date": "2026-09-11",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-09-11",
+    "employeeId": "emp_004",
+    "date": "2026-09-11",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-09-11",
+    "employeeId": "emp_005",
+    "date": "2026-09-11",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-09-11",
+    "employeeId": "emp_006",
+    "date": "2026-09-11",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-09-10",
+    "employeeId": "emp_001",
+    "date": "2026-09-10",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-09-10",
+    "employeeId": "emp_002",
+    "date": "2026-09-10",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-09-10",
+    "employeeId": "emp_003",
+    "date": "2026-09-10",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-09-10",
+    "employeeId": "emp_004",
+    "date": "2026-09-10",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-09-10",
+    "employeeId": "emp_005",
+    "date": "2026-09-10",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-09-10",
+    "employeeId": "emp_006",
+    "date": "2026-09-10",
+    "status": "Half-Day",
+    "checkIn": "09:30 AM",
+    "checkOut": "01:30 PM",
+    "workingHours": 4,
+    "notes": "Personal work in second half"
+  },
+  {
+    "id": "att_emp_001_2026-09-09",
+    "employeeId": "emp_001",
+    "date": "2026-09-09",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-09-09",
+    "employeeId": "emp_002",
+    "date": "2026-09-09",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-09-09",
+    "employeeId": "emp_003",
+    "date": "2026-09-09",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-09-09",
+    "employeeId": "emp_004",
+    "date": "2026-09-09",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-09-09",
+    "employeeId": "emp_005",
+    "date": "2026-09-09",
+    "status": "Half-Day",
+    "checkIn": "09:30 AM",
+    "checkOut": "01:30 PM",
+    "workingHours": 4,
+    "notes": "Personal work in second half"
+  },
+  {
+    "id": "att_emp_006_2026-09-09",
+    "employeeId": "emp_006",
+    "date": "2026-09-09",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-09-08",
+    "employeeId": "emp_001",
+    "date": "2026-09-08",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-09-08",
+    "employeeId": "emp_002",
+    "date": "2026-09-08",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-09-08",
+    "employeeId": "emp_003",
+    "date": "2026-09-08",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-09-08",
+    "employeeId": "emp_004",
+    "date": "2026-09-08",
+    "status": "Half-Day",
+    "checkIn": "09:30 AM",
+    "checkOut": "01:30 PM",
+    "workingHours": 4,
+    "notes": "Personal work in second half"
+  },
+  {
+    "id": "att_emp_005_2026-09-08",
+    "employeeId": "emp_005",
+    "date": "2026-09-08",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-09-08",
+    "employeeId": "emp_006",
+    "date": "2026-09-08",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-09-07",
+    "employeeId": "emp_001",
+    "date": "2026-09-07",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-09-07",
+    "employeeId": "emp_002",
+    "date": "2026-09-07",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-09-07",
+    "employeeId": "emp_003",
+    "date": "2026-09-07",
+    "status": "Half-Day",
+    "checkIn": "09:30 AM",
+    "checkOut": "01:30 PM",
+    "workingHours": 4,
+    "notes": "Personal work in second half"
+  },
+  {
+    "id": "att_emp_004_2026-09-07",
+    "employeeId": "emp_004",
+    "date": "2026-09-07",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-09-07",
+    "employeeId": "emp_005",
+    "date": "2026-09-07",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-09-07",
+    "employeeId": "emp_006",
+    "date": "2026-09-07",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-09-04",
+    "employeeId": "emp_001",
+    "date": "2026-09-04",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-09-04",
+    "employeeId": "emp_002",
+    "date": "2026-09-04",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-09-04",
+    "employeeId": "emp_003",
+    "date": "2026-09-04",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-09-04",
+    "employeeId": "emp_004",
+    "date": "2026-09-04",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-09-04",
+    "employeeId": "emp_005",
+    "date": "2026-09-04",
+    "status": "On Leave",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_006_2026-09-04",
+    "employeeId": "emp_006",
+    "date": "2026-09-04",
+    "status": "Absent",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_001_2026-09-03",
+    "employeeId": "emp_001",
+    "date": "2026-09-03",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-09-03",
+    "employeeId": "emp_002",
+    "date": "2026-09-03",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-09-03",
+    "employeeId": "emp_003",
+    "date": "2026-09-03",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-09-03",
+    "employeeId": "emp_004",
+    "date": "2026-09-03",
+    "status": "On Leave",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_005_2026-09-03",
+    "employeeId": "emp_005",
+    "date": "2026-09-03",
+    "status": "Absent",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_006_2026-09-03",
+    "employeeId": "emp_006",
+    "date": "2026-09-03",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-09-02",
+    "employeeId": "emp_001",
+    "date": "2026-09-02",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-09-02",
+    "employeeId": "emp_002",
+    "date": "2026-09-02",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-09-02",
+    "employeeId": "emp_003",
+    "date": "2026-09-02",
+    "status": "On Leave",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_004_2026-09-02",
+    "employeeId": "emp_004",
+    "date": "2026-09-02",
+    "status": "Absent",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_005_2026-09-02",
+    "employeeId": "emp_005",
+    "date": "2026-09-02",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-09-02",
+    "employeeId": "emp_006",
+    "date": "2026-09-02",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-09-01",
+    "employeeId": "emp_001",
+    "date": "2026-09-01",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-09-01",
+    "employeeId": "emp_002",
+    "date": "2026-09-01",
+    "status": "On Leave",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_003_2026-09-01",
+    "employeeId": "emp_003",
+    "date": "2026-09-01",
+    "status": "Absent",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_004_2026-09-01",
+    "employeeId": "emp_004",
+    "date": "2026-09-01",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-09-01",
+    "employeeId": "emp_005",
+    "date": "2026-09-01",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-09-01",
+    "employeeId": "emp_006",
+    "date": "2026-09-01",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-08-31",
+    "employeeId": "emp_001",
+    "date": "2026-08-31",
+    "status": "On Leave",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_002_2026-08-31",
+    "employeeId": "emp_002",
+    "date": "2026-08-31",
+    "status": "Absent",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_003_2026-08-31",
+    "employeeId": "emp_003",
+    "date": "2026-08-31",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-08-31",
+    "employeeId": "emp_004",
+    "date": "2026-08-31",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-08-31",
+    "employeeId": "emp_005",
+    "date": "2026-08-31",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-08-31",
+    "employeeId": "emp_006",
+    "date": "2026-08-31",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-08-28",
+    "employeeId": "emp_001",
+    "date": "2026-08-28",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-08-28",
+    "employeeId": "emp_002",
+    "date": "2026-08-28",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-08-28",
+    "employeeId": "emp_003",
+    "date": "2026-08-28",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-08-28",
+    "employeeId": "emp_004",
+    "date": "2026-08-28",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-08-28",
+    "employeeId": "emp_005",
+    "date": "2026-08-28",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-08-28",
+    "employeeId": "emp_006",
+    "date": "2026-08-28",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-08-27",
+    "employeeId": "emp_001",
+    "date": "2026-08-27",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-08-27",
+    "employeeId": "emp_002",
+    "date": "2026-08-27",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-08-27",
+    "employeeId": "emp_003",
+    "date": "2026-08-27",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-08-27",
+    "employeeId": "emp_004",
+    "date": "2026-08-27",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-08-27",
+    "employeeId": "emp_005",
+    "date": "2026-08-27",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-08-27",
+    "employeeId": "emp_006",
+    "date": "2026-08-27",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-08-26",
+    "employeeId": "emp_001",
+    "date": "2026-08-26",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-08-26",
+    "employeeId": "emp_002",
+    "date": "2026-08-26",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-08-26",
+    "employeeId": "emp_003",
+    "date": "2026-08-26",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-08-26",
+    "employeeId": "emp_004",
+    "date": "2026-08-26",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-08-26",
+    "employeeId": "emp_005",
+    "date": "2026-08-26",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-08-26",
+    "employeeId": "emp_006",
+    "date": "2026-08-26",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_001_2026-08-25",
+    "employeeId": "emp_001",
+    "date": "2026-08-25",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-08-25",
+    "employeeId": "emp_002",
+    "date": "2026-08-25",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-08-25",
+    "employeeId": "emp_003",
+    "date": "2026-08-25",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-08-25",
+    "employeeId": "emp_004",
+    "date": "2026-08-25",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-08-25",
+    "employeeId": "emp_005",
+    "date": "2026-08-25",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_006_2026-08-25",
+    "employeeId": "emp_006",
+    "date": "2026-08-25",
+    "status": "On Leave",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_001_2026-08-24",
+    "employeeId": "emp_001",
+    "date": "2026-08-24",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_002_2026-08-24",
+    "employeeId": "emp_002",
+    "date": "2026-08-24",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_003_2026-08-24",
+    "employeeId": "emp_003",
+    "date": "2026-08-24",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_004_2026-08-24",
+    "employeeId": "emp_004",
+    "date": "2026-08-24",
+    "status": "Present",
+    "checkIn": "09:30 AM",
+    "checkOut": "05:30 PM",
+    "workingHours": 8
+  },
+  {
+    "id": "att_emp_005_2026-08-24",
+    "employeeId": "emp_005",
+    "date": "2026-08-24",
+    "status": "On Leave",
+    "checkIn": "-",
+    "checkOut": "-",
+    "workingHours": 0
+  },
+  {
+    "id": "att_emp_006_2026-08-24",
+    "employeeId": "emp_006",
+    "date": "2026-08-24",
+    "status": "Half-Day",
+    "checkIn": "09:30 AM",
+    "checkOut": "01:30 PM",
+    "workingHours": 4,
+    "notes": "Personal work in second half"
+  }
+]
