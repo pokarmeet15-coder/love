@@ -1,137 +1,263 @@
-import { useState, useEffect } from 'react';
-import { Proposal, QuestionAnswer } from './types';
-import { fetchProposal } from './utils/api';
-import { FloatingHeartsCanvas } from './components/FloatingHeartsCanvas';
-import { Navbar } from './components/Navbar';
-import { ProposalQuestionnaire } from './components/ProposalQuestionnaire';
-import { ProposalFinale } from './components/ProposalFinale';
-import { CreatorStudio } from './components/CreatorStudio';
-import { AnalyticsDashboard } from './components/AnalyticsDashboard';
-import { RefreshCw, Heart } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Settings, Heart, Zap, Terminal, AlertCircle } from 'lucide-react';
+import { AssistantConfig, SessionState, ToolCallLog } from './types';
+import { AudioStreamer } from './services/AudioStreamer';
+import { LiveSession, DEFAULT_PERSONA_INSTRUCTION } from './services/LiveSession';
+import { MicOrbControl } from './components/MicOrbControl';
+import { AudioVisualizer } from './components/AudioVisualizer';
+import { ToolToast } from './components/ToolToast';
+import { SettingsModal } from './components/SettingsModal';
 
 export default function App() {
-  const [activeView, setActiveView] = useState<'proposal' | 'studio' | 'analytics'>('proposal');
-  const [proposal, setProposal] = useState<Proposal | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  // Config state
+  const [config, setConfig] = useState<AssistantConfig>(() => {
+    const savedKey = localStorage.getItem('GEMINI_API_KEY') || '';
+    return {
+      apiKey: savedKey,
+      voiceName: 'Aoede',
+      modelName: 'gemini-3.1-flash-live-preview',
+      systemInstruction: DEFAULT_PERSONA_INSTRUCTION,
+    };
+  });
 
-  // Completed questionnaire state
-  const [isCompleted, setIsCompleted] = useState<boolean>(false);
-  const [submittedAnswers, setSubmittedAnswers] = useState<QuestionAnswer[]>([]);
+  // Application session state
+  const [sessionState, setSessionState] = useState<SessionState>('disconnected');
+  const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [toolLogs, setToolLogs] = useState<ToolCallLog[]>([]);
+  const [accentColor, setAccentColor] = useState<string>('#ec4899');
 
-  // Detect URL parameter ?id=...
-  const urlParams = new URLSearchParams(window.location.search);
-  const proposalIdFromUrl = urlParams.get('id') || 'default';
+  // Real-time audio visualizer metrics
+  const [audioLevels, setAudioLevels] = useState({
+    inputLevel: 0,
+    outputLevel: 0,
+    inputFrequencies: new Uint8Array(128),
+    outputFrequencies: new Uint8Array(128),
+  });
 
+  // References to core services
+  const audioStreamerRef = useRef<AudioStreamer | null>(null);
+  const liveSessionRef = useRef<LiveSession | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
+
+  // Initialize audio streamer and dynamic theme listener
   useEffect(() => {
-    loadProposalData(proposalIdFromUrl);
-  }, [proposalIdFromUrl]);
+    const streamer = new AudioStreamer({
+      onPlaybackStateChange: (isPlaying) => {
+        if (liveSessionRef.current) {
+          const currentState = liveSessionRef.current.getState();
+          if (isPlaying && currentState !== 'speaking') {
+            setSessionState('speaking');
+          } else if (!isPlaying && currentState === 'speaking') {
+            setSessionState('listening');
+          }
+        }
+      },
+    });
 
-  const loadProposalData = async (id: string) => {
-    try {
-      setIsLoading(true);
-      setErrorMsg(null);
-      const data = await fetchProposal(id);
-      setProposal(data);
-    } catch (err) {
-      console.error(err);
-      setErrorMsg('Failed to load proposal. Displaying default template.');
-    } finally {
-      setIsLoading(false);
+    audioStreamerRef.current = streamer;
+
+    // Listen for custom tool theme changes
+    const handleThemeChange = (e: any) => {
+      if (e.detail?.color) {
+        setAccentColor(e.detail.color);
+      }
+    };
+    document.addEventListener('app-theme-change', handleThemeChange);
+
+    // Continuous audio visualizer animation loop
+    const updateLevels = () => {
+      if (audioStreamerRef.current) {
+        const levels = audioStreamerRef.current.getAudioLevels();
+        setAudioLevels(levels);
+      }
+      animationFrameRef.current = requestAnimationFrame(updateLevels);
+    };
+    updateLevels();
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      document.removeEventListener('app-theme-change', handleThemeChange);
+      if (liveSessionRef.current) {
+        liveSessionRef.current.disconnect();
+      }
+      if (audioStreamerRef.current) {
+        audioStreamerRef.current.close();
+      }
+    };
+  }, []);
+
+  // Save API key changes to localStorage
+  const handleSaveConfig = (newConfig: AssistantConfig) => {
+    setConfig(newConfig);
+    if (newConfig.apiKey) {
+      localStorage.setItem('GEMINI_API_KEY', newConfig.apiKey);
     }
   };
 
-  const handleProposalComplete = (answers: QuestionAnswer[], _saidYes: boolean) => {
-    setSubmittedAnswers(answers);
-    setIsCompleted(true);
-  };
+  // Toggle Live Voice Session (Connect / Disconnect)
+  const handleToggleSession = async () => {
+    setErrorMessage(null);
 
-  const handleRestart = () => {
-    setIsCompleted(false);
-    setSubmittedAnswers([]);
-  };
+    // If currently connected or connecting, disconnect
+    if (sessionState !== 'disconnected') {
+      if (liveSessionRef.current) {
+        await liveSessionRef.current.disconnect();
+      }
+      setSessionState('disconnected');
+      return;
+    }
 
-  const handleSavedStudioProposal = (savedProposal: Proposal) => {
-    setProposal(savedProposal);
-  };
+    // Check API Key presence
+    if (!config.apiKey) {
+      setIsSettingsOpen(true);
+      setErrorMessage('Please enter your Gemini API Key in Settings to start.');
+      return;
+    }
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-rose-100 via-pink-50 to-rose-200 flex flex-col items-center justify-center p-4">
-        <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-xl flex items-center gap-3 border border-rose-200">
-          <RefreshCw className="w-6 h-6 text-rose-500 animate-spin" />
-          <span className="text-sm font-bold text-rose-900">Preparing secret proposal...</span>
-        </div>
-      </div>
-    );
-  }
+    try {
+      if (!audioStreamerRef.current) {
+        audioStreamerRef.current = new AudioStreamer();
+      }
+
+      const liveSession = new LiveSession(
+        config,
+        {
+          onStateChange: (newState) => {
+            setSessionState(newState);
+          },
+          onToolCall: (log) => {
+            setToolLogs((prev) => [log, ...prev.slice(0, 9)]);
+          },
+          onError: (err) => {
+            console.error('Session Error:', err);
+            setErrorMessage(err.message || 'Connection error occurred.');
+            setSessionState('disconnected');
+          },
+          onInterrupted: () => {
+            setSessionState('listening');
+          },
+        },
+        audioStreamerRef.current
+      );
+
+      liveSessionRef.current = liveSession;
+      await liveSession.connect();
+    } catch (err: any) {
+      console.error('Session initialization error:', err);
+      setErrorMessage(err.message || 'Failed to start voice assistant session.');
+      setSessionState('disconnected');
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-100 via-pink-50 to-rose-200 text-rose-950 font-sans relative selection:bg-rose-200 flex flex-col">
-      {/* Background Floating Hearts Particle Effect */}
-      <FloatingHeartsCanvas />
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans relative overflow-hidden flex flex-col justify-between selection:bg-pink-500 selection:text-white">
+      {/* Background Animated Futuristic Glow Ambient Orbs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+          className="absolute -top-24 -left-24 w-96 h-96 rounded-full blur-3xl opacity-20 transition-all duration-1000 animate-pulse"
+          style={{ backgroundColor: accentColor }}
+        />
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-cyan-500 blur-3xl opacity-15 transition-all duration-1000" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-purple-600 blur-3xl opacity-10" />
+      </div>
 
-      {/* Top Navbar */}
-      <Navbar
-        activeView={activeView}
-        setActiveView={(view) => {
-          setActiveView(view);
-          if (view === 'proposal') {
-            // Keep completion state intact or reset if switching back
-          }
-        }}
-        proposalId={proposal?.id || proposalIdFromUrl}
-        musicTrack={proposal?.musicTrack || 'romantic-melody'}
-      />
+      {/* Top Mobile Header */}
+      <header className="relative z-20 px-5 py-4 flex items-center justify-between border-b border-slate-900/80 bg-slate-950/60 backdrop-blur-md">
+        <div className="flex items-center gap-2.5">
+          <div className="p-2 rounded-2xl bg-gradient-to-tr from-rose-500 to-pink-500 shadow-md shadow-pink-500/20 text-white">
+            <Heart className="w-5 h-5 fill-white" />
+          </div>
+          <div>
+            <div className="flex items-center gap-1.5">
+              <h1 className="text-base font-black tracking-tight bg-gradient-to-r from-pink-400 via-rose-300 to-cyan-300 bg-clip-text text-transparent">
+                ROXY AI
+              </h1>
+              <span className="px-1.5 py-0.5 rounded-full bg-pink-500/10 border border-pink-500/30 text-[10px] font-mono font-bold text-pink-400">
+                LIVE
+              </span>
+            </div>
+            <p className="text-[11px] text-slate-400 font-medium">Sassy Voice AI Companion</p>
+          </div>
+        </div>
 
-      {/* Error alert fallback */}
-      {errorMsg && (
-        <div className="max-w-md mx-auto mt-4 px-4 py-2 bg-rose-50 border border-rose-300 text-rose-700 text-xs rounded-2xl text-center">
-          {errorMsg}
+        <button
+          onClick={() => setIsSettingsOpen(true)}
+          className="p-2.5 rounded-2xl bg-slate-900/90 border border-slate-800 text-slate-300 hover:text-white hover:border-pink-500/50 transition-all cursor-pointer shadow-md"
+          aria-label="Settings"
+        >
+          <Settings className="w-5 h-5" />
+        </button>
+      </header>
+
+      {/* Error Banner Alert */}
+      {errorMessage && (
+        <div className="relative z-20 max-w-sm mx-auto mt-3 px-4">
+          <div className="bg-rose-950/80 border border-rose-800 text-rose-200 px-3.5 py-2.5 rounded-2xl text-xs flex items-center gap-2 shadow-xl backdrop-blur-md">
+            <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+            <span className="flex-1">{errorMessage}</span>
+            <button
+              onClick={() => setErrorMessage(null)}
+              className="text-rose-400 hover:text-white text-xs font-bold px-1"
+            >
+              ✕
+            </button>
+          </div>
         </div>
       )}
 
-      {/* Main View Container */}
-      <main className="flex-1 relative z-10 pb-12">
-        {activeView === 'proposal' && (
-          <>
-            {!isCompleted && proposal ? (
-              <ProposalQuestionnaire
-                proposal={proposal}
-                onComplete={handleProposalComplete}
-              />
-            ) : proposal ? (
-              <ProposalFinale
-                proposal={proposal}
-                answers={submittedAnswers}
-                onRestart={handleRestart}
-              />
-            ) : null}
-          </>
-        )}
+      {/* Main Interactive Mic Center Stage */}
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 py-6">
+        {/* Main Central Mic / Power Orb Control */}
+        <MicOrbControl
+          state={sessionState}
+          onToggle={handleToggleSession}
+          inputLevel={audioLevels.inputLevel}
+          outputLevel={audioLevels.outputLevel}
+          accentColor={accentColor}
+        />
 
-        {activeView === 'studio' && proposal && (
-          <CreatorStudio
-            currentProposal={proposal}
-            onSaved={handleSavedStudioProposal}
-          />
-        )}
+        {/* Dynamic Real-Time Waveform Visualizer */}
+        <AudioVisualizer
+          state={sessionState}
+          inputLevel={audioLevels.inputLevel}
+          outputLevel={audioLevels.outputLevel}
+          inputFrequencies={audioLevels.inputFrequencies}
+          outputFrequencies={audioLevels.outputFrequencies}
+          accentColor={accentColor}
+        />
 
-        {activeView === 'analytics' && proposal && (
-          <AnalyticsDashboard
-            proposalId={proposal.id}
-            defaultPin={proposal.creatorPin}
-            crushName={proposal.crushName}
-          />
-        )}
+        {/* Browser Action Tool Call Toasts */}
+        <ToolToast logs={toolLogs} />
       </main>
 
-      {/* Footer */}
-      <footer className="relative z-10 py-4 text-center text-xs text-rose-500 font-medium border-t border-rose-200/50 bg-white/40 backdrop-blur-xs">
-        <p className="flex items-center justify-center gap-1">
-          Made with <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> for romantic moments
-        </p>
+      {/* Bottom Status & Info Bar */}
+      <footer className="relative z-20 px-4 py-3 border-t border-slate-900/80 bg-slate-950/80 backdrop-blur-md flex flex-col items-center gap-1 text-[11px] text-slate-500 font-mono">
+        <div className="flex items-center gap-3">
+          <span className="flex items-center gap-1">
+            <Zap className="w-3 h-3 text-pink-400" />
+            Audio-to-Audio PCM16/24kHz
+          </span>
+          <span>•</span>
+          <span className="flex items-center gap-1">
+            <Terminal className="w-3 h-3 text-cyan-400" />
+            Function Calling
+          </span>
+        </div>
+        <div className="text-[10px] text-slate-600">
+          Powered by Gemini Live API (@google/genai)
+        </div>
       </footer>
+
+      {/* Settings Configuration Modal */}
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        config={config}
+        onSave={handleSaveConfig}
+      />
     </div>
   );
 }
