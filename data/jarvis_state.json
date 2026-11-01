@@ -1,0 +1,145 @@
+{
+  "personality": {
+    "humorLevel": 45,
+    "formality": "balanced",
+    "voiceProfile": "classic-jarvis",
+    "wakePhraseEnabled": true,
+    "skills": {
+      "smartHome": true,
+      "calendarScheduling": true,
+      "musicControl": true,
+      "trafficBriefing": true,
+      "dailySummary": true
+    }
+  },
+  "privacy": {
+    "micEnabled": true,
+    "localProcessingOnly": false,
+    "dataSharingEnabled": false,
+    "encryptionStatus": true,
+    "ratingsHistory": []
+  },
+  "devices": [
+    {
+      "id": "dev-1",
+      "name": "Living Room Lights",
+      "type": "light",
+      "room": "Living Room",
+      "status": false,
+      "value": 80,
+      "color": "#ffb703"
+    },
+    {
+      "id": "dev-2",
+      "name": "Workspace Downlights",
+      "type": "light",
+      "room": "Office",
+      "status": false,
+      "value": 100,
+      "color": "#ffffff"
+    },
+    {
+      "id": "dev-3",
+      "name": "Main Climate Nest",
+      "type": "thermostat",
+      "room": "Hallway",
+      "status": true,
+      "value": 71
+    },
+    {
+      "id": "dev-4",
+      "name": "Front Entrance Deadbolt",
+      "type": "lock",
+      "room": "Entrance",
+      "status": true
+    },
+    {
+      "id": "dev-5",
+      "name": "Home Perimeter Defense",
+      "type": "security",
+      "room": "Whole House",
+      "status": true
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-1",
+      "title": "Review quarterly AI research paper",
+      "priority": "high",
+      "dueDate": "Today, 4:00 PM",
+      "completed": false,
+      "category": "Work"
+    },
+    {
+      "id": "task-2",
+      "title": "Schedule weekly synced backup for smart home sensors",
+      "priority": "medium",
+      "dueDate": "Tomorrow",
+      "completed": false,
+      "category": "System"
+    },
+    {
+      "id": "task-3",
+      "title": "Pick up organic roast coffee beans",
+      "priority": "low",
+      "dueDate": "Friday",
+      "completed": true,
+      "category": "Personal"
+    }
+  ],
+  "events": [
+    {
+      "id": "evt-1",
+      "title": "Project Archangel Synchronization",
+      "time": "10:00 AM - 11:00 AM",
+      "date": "Today",
+      "location": "Virtual Suite 4",
+      "attendees": [
+        "Tony S.",
+        "Dr. Banner"
+      ]
+    },
+    {
+      "id": "evt-2",
+      "title": "Security Perimeter Calibration",
+      "time": "02:30 PM - 03:00 PM",
+      "date": "Today",
+      "location": "Server Facility Alpha"
+    },
+    {
+      "id": "evt-3",
+      "title": "Dinner with Pepper Potts",
+      "time": "07:30 PM - 09:30 PM",
+      "date": "Tonight",
+      "location": "Stark Tower Rooftop"
+    }
+  ],
+  "reminders": [
+    {
+      "id": "rem-1",
+      "title": "Take hydration break & review thermal telemetry",
+      "time": "Every 2 hours",
+      "locationBased": false,
+      "completed": false
+    },
+    {
+      "id": "rem-2",
+      "title": "Call Bruce when reaching the laboratory",
+      "locationBased": true,
+      "locationName": "Bio Lab Complex",
+      "completed": false
+    },
+    {
+      "id": "rem-3",
+      "title": "Arm perimeter security sensors before nightfall",
+      "time": "08:00 PM",
+      "locationBased": false,
+      "completed": false
+    }
+  ],
+  "conversationMemory": [
+    "User prefers room temperature around 71°F.",
+    "User likes concise updates with occasional dry British wit.",
+    "User prioritizes strict end-to-end data encryption and local processing when possible."
+  ]
+}
