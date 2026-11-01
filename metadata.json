@@ -1,6 +1,6 @@
 {
-  "name": "LoveProposal - Romantic Proposal & Response Tracker",
-  "description": "An interactive romantic proposal experience with step-by-step questions, evasive No button, photo memory timeline, romantic music player, custom proposal creator, and live answer analytics dashboard.",
-  "requestFramePermissions": [],
+  "name": "Jarvis AI - Intelligent Virtual Assistant",
+  "description": "An advanced, context-aware virtual assistant with voice interaction, daily morning briefing, smart home automation, task and calendar scheduling, personality tuning, and cryptographic privacy controls.",
+  "requestFramePermissions": ["CAMERA", "MICROPHONE"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
